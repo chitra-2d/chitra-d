@@ -6,6 +6,7 @@ import std.conv;
 public import chitra.helpers;
 
 import chitra.context;
+import chitra.elements.rect;
 
 class Chitra : Context
 {
@@ -22,5 +23,16 @@ class Chitra : Context
     this(int width, int height, int resolution)
     {
         super(width, height, resolution);
+    }
+
+    void rect(int x, int y, float w, float h)
+    {
+        auto r = new Rect(x, y, w, h);
+        this.elements ~= r;
+    }
+
+    void rect(int x, int y, float w)
+    {
+        this.rect(x, y, w, w);
     }
 }

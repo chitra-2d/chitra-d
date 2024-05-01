@@ -27,4 +27,3 @@ class Rect : Element
         return format("rect(x: %d, y: %d, w: %f, h: %f)", this.x, this.y, this.w, this.h);
     }
 }
-

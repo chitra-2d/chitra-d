@@ -26,7 +26,7 @@ class Chitra : Context
        auto ctx = new Chitra("a4", resolution: 300);       
        ----
      */
-    this(string paper, int resolution=DEFAULT_RESOLUTION)
+    this(string paper, int resolution = DEFAULT_RESOLUTION)
     {
         super(paper, resolution);
     }

@@ -9,10 +9,10 @@ T inch(T)(T value)
 
 T cm(T)(T value)
 {
-    return (value/2.54).inch;
+    return (value / 2.54).inch;
 }
 
 T mm(T)(T value)
 {
-    return (value/10).cm;
+    return (value / 10).cm;
 }

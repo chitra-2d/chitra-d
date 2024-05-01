@@ -3,6 +3,7 @@ module chitra.paper_sizes;
 // Ref: https://en.wikipedia.org/wiki/Paper_size
 
 // Paper sizes in mm
+// dfmt off
 const int[][string] PAPER_SIZES = [
                                   "a0":     [841, 1189],
                                   "a1":     [594, 841],
@@ -41,3 +42,4 @@ const int[][string] PAPER_SIZES = [
                                   "legal":  [216, 356],
                                   "ledger": [432, 279]
                                   ];
+// dfmt on

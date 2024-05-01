@@ -18,7 +18,7 @@ const LANDSCAPE = "landscape";
 // Convert from mm to Pixels with default resolution
 int defaultResolutionPixels(int value)
 {
-    return to!int(((value/10)/2.54) * DEFAULT_RESOLUTION);
+    return to!int(((value / 10) / 2.54) * DEFAULT_RESOLUTION);
 }
 
 class Context
@@ -38,7 +38,7 @@ class Context
         if (Context.resolution == DEFAULT_RESOLUTION)
             return value;
 
-        return (value/DEFAULT_RESOLUTION) * Context.resolution;
+        return (value / DEFAULT_RESOLUTION) * Context.resolution;
     }
 
     this(int width = DEFAULT_WIDTH, int height = 0, int resolution = DEFAULT_RESOLUTION)
@@ -46,25 +46,31 @@ class Context
         this.resolution = resolution;
         this.width = correctedSize(width);
         this.height = correctedSize(height == 0 ? width : height);
-        this.defaultSurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, this.width, this.height);
+        this.defaultSurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
+                this.width, this.height);
     }
 
     this(string paper, int resolution = DEFAULT_RESOLUTION)
     {
         string orientation = PORTRAIT;
         auto parts = paper.toLower.split(",");
-        if(parts.length == 2) {
-            if(parts[0] == PORTRAIT || parts[0] == LANDSCAPE){
+        if (parts.length == 2)
+        {
+            if (parts[0] == PORTRAIT || parts[0] == LANDSCAPE)
+            {
                 paper = parts[1];
                 orientation = parts[0];
-            } else if(parts[1] == PORTRAIT || parts[1] == LANDSCAPE) {
+            }
+            else if (parts[1] == PORTRAIT || parts[1] == LANDSCAPE)
+            {
                 paper = parts[0];
                 orientation = parts[1];
             }
         }
 
         auto size = paper in PAPER_SIZES;
-        if (size is null) {
+        if (size is null)
+        {
             throw new Exception("invalid paper");
         }
         auto w = defaultResolutionPixels((*size)[0]);
@@ -72,7 +78,7 @@ class Context
 
         if (orientation == LANDSCAPE)
             swap(w, h);
-        
+
         this(w, h, resolution);
     }
 

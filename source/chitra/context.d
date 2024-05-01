@@ -11,6 +11,7 @@ import chitra.paper_sizes;
 import chitra.elements.core;
 
 const DEFAULT_RESOLUTION = 300;
+const DEFAULT_WIDTH = 700;
 const PORTRAIT = "portrait";
 const LANDSCAPE = "landscape";
 
@@ -39,12 +40,12 @@ class Context
 
         return (value/DEFAULT_RESOLUTION) * Context.resolution;
     }
-    
-    this(int width, int height, int resolution = DEFAULT_RESOLUTION)
+
+    this(int width = DEFAULT_WIDTH, int height = 0, int resolution = DEFAULT_RESOLUTION)
     {
         this.resolution = resolution;
         this.width = correctedSize(width);
-        this.height = correctedSize(height);
+        this.height = correctedSize(height == 0 ? width : height);
         this.defaultSurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, this.width, this.height);
     }
 

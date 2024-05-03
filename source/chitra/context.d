@@ -1,14 +1,17 @@
 module chitra.context;
 
 import std.conv : to;
-import std.string : toLower, split;
+import std.string : toLower, split, toStringz;
 import std.algorithm.mutation : swap;
+import std.algorithm;
 
 import chitra.cairo;
+import chitra.surfaces;
 import chitra.paper_sizes;
 
 // Import all the elements
 import chitra.elements.core;
+import chitra.properties;
 
 const DEFAULT_RESOLUTION = 300;
 const DEFAULT_WIDTH = 700;
@@ -26,9 +29,12 @@ class Context
     Element[] elements;
     bool debugEnabled = false;
     cairo_surface_t* defaultSurface;
+    cairo_t* defaultCairoCtx;
     int width;
     int height;
     static int resolution = 300;
+    ShapeProperties shapeProps;
+    TextProperties textProps;
 
     // Change the size as per the resolution specified
     // When a different resolution is specified other
@@ -48,6 +54,7 @@ class Context
         this.height = correctedSize(height == 0 ? width : height);
         this.defaultSurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
                 this.width, this.height);
+        this.defaultCairoCtx = cairo_create(this.defaultSurface);
     }
 
     this(string paper, int resolution = DEFAULT_RESOLUTION)
@@ -90,5 +97,36 @@ class Context
     void disableDebug()
     {
         this.debugEnabled = false;
+    }
+
+    void save(string outputFile)
+    {
+        cairo_surface_t* surface;
+
+        if (outputFile.endsWith(".pdf"))
+            surface = createPdfSurface(outputFile, this.width, this.height);
+        else if (outputFile.endsWith(".png"))
+            surface = createPngSurface(outputFile, this.width, this.height);
+        else if (outputFile.endsWith(".svg"))
+            surface = createSvgSurface(outputFile, this.width, this.height);
+        else
+            return;
+
+        auto cairoCtx = cairo_create(surface);
+
+        // TODO: Uncomment this after checking
+        // if (this.debugEnabled)
+        // {
+        //     foreach(element; elements)
+        //         writeln(element.debugInfo);
+        // }
+
+        foreach (element; elements)
+            element.draw(cairoCtx);
+
+        if (outputFile.endsWith(".png"))
+            cairo_surface_write_to_png(surface, outputFile.toStringz);
+
+        cairo_surface_finish(surface);
     }
 }

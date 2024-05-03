@@ -1,0 +1,14 @@
+{
+	"authors": [
+		"Aravinda VK <mail@aravindavk.in>"
+	],
+	"copyright": "Copyright © 2024, Aravinda VK <mail@aravindavk.in>",
+	"description": "2D graphics library Examples",
+	"license": "MIT",
+	"name": "examples",
+    "dependencies": {
+        "chitra": {
+            "path": "../"
+        }
+    }
+}

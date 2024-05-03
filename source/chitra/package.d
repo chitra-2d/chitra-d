@@ -5,7 +5,9 @@ import std.conv;
 
 public import chitra.helpers;
 
+import chitra.cairo;
 import chitra.context;
+import chitra.properties;
 import chitra.elements.rect;
 
 class Chitra : Context
@@ -58,23 +60,6 @@ class Chitra : Context
         super(width, height, DEFAULT_RESOLUTION);
     }
 
-    /**
-       Draw a Square or Rectangle.
-
-       ---
-       // Square of width 100
-       //       x   y   w
-       ctx.rect(50, 50, 100);
-       
-       // Rectangle of width 100 and height 50
-       //       x   y   w    h
-       ctx.rect(50, 50, 100, 50);
-       ---
-     */
-    void rect(int x, int y, float w, float h = 0.0)
-    {
-        h = h == 0.0 ? w : h;
-        auto r = new Rect(x, y, w, h);
-        this.elements ~= r;
-    }
+    mixin propertiesFunctions;
+    mixin rectFunctions;
 }

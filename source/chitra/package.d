@@ -9,6 +9,7 @@ import chitra.cairo;
 import chitra.context;
 import chitra.properties;
 import chitra.elements.rect;
+import chitra.elements.oval;
 import chitra.elements.polygon;
 
 class Chitra : Context
@@ -63,5 +64,6 @@ class Chitra : Context
 
     mixin propertiesFunctions;
     mixin rectFunctions;
+    mixin ovalFunctions;
     mixin polygonFunctions;
 }

@@ -1,0 +1,76 @@
+module chitra.elements.oval;
+
+import std.format;
+import std.math.constants;
+
+import chitra.cairo;
+import chitra.properties;
+import chitra.elements.core;
+
+class Oval : Element
+{
+    double x, y, w, h;
+    ShapeProperties shapeProps;
+
+    this(double x, double y, double w, double h)
+    {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+
+    void draw(cairo_t* cairoCtx)
+    {
+        cairo_save(cairoCtx);
+        cairo_translate(cairoCtx, x + w / 2, y + h / 2);
+        cairo_scale(cairoCtx, w / 2, h / 2);
+        cairo_arc(cairoCtx, 0.0, 0.0, 1.0, 0.0, 2.0 * PI);
+        cairo_restore(cairoCtx);
+        drawShapeProperties(cairoCtx, shapeProps);
+    }
+
+    string debugInfo()
+    {
+        return format("oval(x: %f, y: %f, w: %f, h: %f)", this.x, this.y, this.w, this.h);
+    }
+}
+
+mixin template ovalFunctions()
+{
+    /**
+       Draw a Circle or Oval.
+
+       ---
+       // Circle of width 100
+       //       x   y   w
+       ctx.oval(50, 50, 100);
+
+       // Oval of width 100 and height 50
+       //       x   y   w    h
+       ctx.oval(50, 50, 100, 50);
+       ---
+     */
+    void oval(double x, double y, double w, double h = 0.0)
+    {
+        h = h == 0.0 ? w : h;
+        auto s = new Oval(x, y, w, h);
+        s.shapeProps = this.shapeProps;
+        s.draw(this.defaultCairoCtx);
+        this.elements ~= s;
+    }
+
+    /**
+       Draw a Circle.
+
+       ---
+       // Circle of width 100
+       //         x   y   w
+       ctx.circle(50, 50, 100);
+       ---
+     */
+    void circle(double x, double y, double w)
+    {
+        oval(x, y, w);
+    }
+}

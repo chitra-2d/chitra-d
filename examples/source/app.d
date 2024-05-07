@@ -18,6 +18,7 @@ void main()
         writeln(width);
         oval(width/2, height/2, 200);
 
+        translate(200, 50);
         rotate(45);
         rect(200, 200, 300);
         rotate(-45);

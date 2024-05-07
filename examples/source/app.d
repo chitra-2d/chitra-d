@@ -18,6 +18,10 @@ void main()
         writeln(width);
         oval(width/2, height/2, 200);
 
+        rotate(45);
+        rect(200, 200, 300);
+        rotate(-45);
+
         scale(2);
         oval(200, 200, 200);
         save("sample.png");

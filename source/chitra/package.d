@@ -13,6 +13,7 @@ import chitra.elements.oval;
 import chitra.elements.polygon;
 import chitra.elements.background;
 import chitra.elements.scale;
+import chitra.elements.rotate;
 
 class Chitra : Context
 {
@@ -70,4 +71,5 @@ class Chitra : Context
     mixin polygonFunctions;
     mixin backgroundFunctions;
     mixin scaleFunctions;
+    mixin rotateFunctions;
 }

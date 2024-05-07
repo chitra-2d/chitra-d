@@ -11,6 +11,7 @@ import chitra.properties;
 import chitra.elements.rect;
 import chitra.elements.oval;
 import chitra.elements.polygon;
+import chitra.elements.background;
 
 class Chitra : Context
 {
@@ -66,4 +67,5 @@ class Chitra : Context
     mixin rectFunctions;
     mixin ovalFunctions;
     mixin polygonFunctions;
+    mixin backgroundFunctions;
 }

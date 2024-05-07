@@ -7,6 +7,7 @@ void main()
     auto ctx = new Chitra;
     with (ctx)
     {
+        background("#777777");
         fill("#dddddd");
         rect(50, 50, 500, 200);
         fill(0, 0, 1);

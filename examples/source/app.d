@@ -17,6 +17,9 @@ void main()
         fill(0, 0, 1);
         writeln(width);
         oval(width/2, height/2, 200);
+
+        scale(2);
+        oval(200, 200, 200);
         save("sample.png");
     }
 }

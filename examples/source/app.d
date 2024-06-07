@@ -9,6 +9,7 @@ void main()
     {
         background("#777777");
         fill("#dddddd");
+        line(0, 0, width, height);
         rect(50, 50, 500, 200);
         fill(0, 0, 1);
         polygon([[50, 450], [50, 50], [450, 50], [100, 100]], true);

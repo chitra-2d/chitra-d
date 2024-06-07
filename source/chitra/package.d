@@ -15,6 +15,7 @@ import chitra.elements.background;
 import chitra.elements.scale;
 import chitra.elements.rotate;
 import chitra.elements.translate;
+import chitra.elements.new_page;
 
 class Chitra : Context
 {
@@ -74,4 +75,5 @@ class Chitra : Context
     mixin scaleFunctions;
     mixin rotateFunctions;
     mixin translateFunctions;
+    mixin newPageFunctions;
 }

@@ -23,7 +23,9 @@ void main()
         rect(200, 200, 300);
         rotate(-45);
 
+        newPage;
         scale(2);
+        fill(0, 0, 1);
         oval(200, 200, 200);
         save("sample.png");
     }

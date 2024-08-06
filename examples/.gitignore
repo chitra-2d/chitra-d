@@ -14,4 +14,4 @@ examples-test-*
 *.o
 *.obj
 *.lst
-*.png
+/*.png

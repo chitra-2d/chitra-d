@@ -94,4 +94,9 @@ mixin template propertiesFunctions()
     {
         shapeProps.fill = Color.fromHexString(hexValue);
     }
+
+    void noStroke()
+    {
+        shapeProps.strokeWidth = 0;
+    }
 }

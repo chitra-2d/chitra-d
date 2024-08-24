@@ -9,11 +9,6 @@ class NewPage : Element
     {
         cairo_show_page(cairoCtx);
     }
-
-    string debugInfo()
-    {
-        return "new_page()";
-    }
 }
 
 mixin template newPageFunctions()

@@ -26,11 +26,6 @@ class Line : Element
         cairo_line_to(cairoCtx, x2, y2);
         drawShapeProperties(cairoCtx, shapeProps);
     }
-
-    string debugInfo()
-    {
-        return format("line(x1: %f, y1: %f, x2: %f, y2: %f)", this.x1, this.y1, this.x2, this.y2);
-    }
 }
 
 mixin template lineFunctions()

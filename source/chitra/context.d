@@ -27,7 +27,6 @@ int defaultResolutionPixels(int value)
 class Context
 {
     Element[] elements;
-    bool debugEnabled = false;
     cairo_surface_t* defaultSurface;
     cairo_t* defaultCairoCtx;
     int width;
@@ -89,16 +88,6 @@ class Context
         this(w, h, resolution);
     }
 
-    void enableDebug()
-    {
-        this.debugEnabled = true;
-    }
-
-    void disableDebug()
-    {
-        this.debugEnabled = false;
-    }
-
     void save(string outputFile)
     {
         cairo_surface_t* surface;
@@ -113,13 +102,6 @@ class Context
             return;
 
         auto cairoCtx = cairo_create(surface);
-
-        // TODO: Uncomment this after checking
-        // if (this.debugEnabled)
-        // {
-        //     foreach(element; elements)
-        //         writeln(element.debugInfo);
-        // }
 
         foreach (element; elements)
             element.draw(cairoCtx);

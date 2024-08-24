@@ -19,11 +19,6 @@ class Scale : Element
     {
         cairo_scale(cairoCtx, scaleX, scaleY);
     }
-
-    string debugInfo()
-    {
-        return format("scale(x: %f, y: %f)", this.scaleX, this.scaleY);
-    }
 }
 
 mixin template scaleFunctions()

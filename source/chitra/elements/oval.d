@@ -29,11 +29,6 @@ class Oval : Element
         cairo_restore(cairoCtx);
         drawShapeProperties(cairoCtx, shapeProps);
     }
-
-    string debugInfo()
-    {
-        return format("oval(x: %f, y: %f, w: %f, h: %f)", this.x, this.y, this.w, this.h);
-    }
 }
 
 mixin template ovalFunctions()

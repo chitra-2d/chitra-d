@@ -29,11 +29,6 @@ class Polygon : Element
 
         drawShapeProperties(cairoCtx, shapeProps);
     }
-
-    string debugInfo()
-    {
-        return format("polygon(points: %s, close: %s)", this.points, this.close);
-    }
 }
 
 mixin template polygonFunctions()

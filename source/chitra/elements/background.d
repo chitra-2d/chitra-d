@@ -22,11 +22,6 @@ class Background : Element
         cairo_rectangle(cairoCtx, 0, 0, w, h);
         drawShapeProperties(cairoCtx, shapeProps);
     }
-
-    string debugInfo()
-    {
-        return format("background(w: %f, h: %f)", this.w, this.h);
-    }
 }
 
 mixin template backgroundFunctions()

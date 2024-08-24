@@ -6,7 +6,6 @@ import chitra.properties;
 interface Element
 {
     void draw(cairo_t* cairoCtx);
-    string debugInfo();
 
     final void drawShapeProperties(cairo_t* cairoCtx, ShapeProperties shapeProps)
     {

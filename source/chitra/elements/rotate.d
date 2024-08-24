@@ -27,12 +27,6 @@ class Rotate : Element
         else
             cairo_rotate(cairoCtx, angle);
     }
-
-    string debugInfo()
-    {
-        return format("rotate(angle: %f, centerX: %f, centerY: %f)",
-                this.angle, this.centerX, this.centerY);
-    }
 }
 
 mixin template rotateFunctions()

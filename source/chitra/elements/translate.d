@@ -19,11 +19,6 @@ class Translate : Element
     {
         cairo_translate(cairoCtx, x, y);
     }
-
-    string debugInfo()
-    {
-        return format("translate(x: %f, y: %f)", this.x, this.y);
-    }
 }
 
 mixin template translateFunctions()

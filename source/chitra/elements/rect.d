@@ -68,11 +68,6 @@ class Rect : Element
         }
         drawShapeProperties(cairoCtx, shapeProps);
     }
-
-    string debugInfo()
-    {
-        return format("rect(x: %f, y: %f, w: %f, h: %f)", this.x, this.y, this.w, this.h);
-    }
 }
 
 mixin template rectFunctions()

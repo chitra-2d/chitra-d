@@ -82,21 +82,49 @@ mixin template propertiesFunctions()
 {
     void fill(double r, double g, double b, double a = 1.0)
     {
+        shapeProps.noFill = false;
         shapeProps.fill = Color(r, g, b, a);
     }
 
     void fill(double gray, double a = 1.0)
     {
+        shapeProps.noFill = false;
         shapeProps.fill = Color(gray, a);
     }
 
     void fill(string hexValue)
     {
+        shapeProps.noFill = false;
         shapeProps.fill = Color.fromHexString(hexValue);
+    }
+
+    void stroke(double r, double g, double b, double a = 1.0)
+    {
+        shapeProps.stroke = Color(r, g, b, a);
+    }
+
+    void stroke(double gray, double a = 1.0)
+    {
+        shapeProps.stroke = Color(gray, a);
+    }
+
+    void stroke(string hexValue)
+    {
+        shapeProps.stroke = Color.fromHexString(hexValue);
     }
 
     void noStroke()
     {
         shapeProps.strokeWidth = 0;
+    }
+
+    void strokeWidth(int value)
+    {
+        shapeProps.strokeWidth = value;
+    }
+
+    void noFill()
+    {
+        shapeProps.noFill = true;
     }
 }

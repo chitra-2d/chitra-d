@@ -10,7 +10,7 @@ import chitra.surfaces;
 import chitra.paper_sizes;
 
 // Import all the elements
-import chitra.elements.core;
+import chitra.elements;
 import chitra.properties;
 
 const DEFAULT_RESOLUTION = 300;

@@ -5,7 +5,7 @@ import std.format;
 import chitra.cairo;
 import chitra.elements.core;
 
-class Rotate : Element
+struct Rotate
 {
     double angle, centerX, centerY;
 
@@ -59,8 +59,8 @@ mixin template rotateFunctions()
         // TODO: Implement this with saved state
         // @current_saved_context.add_transformation(t) if @current_saved_context.enabled?
         auto rad = PI * angle / 180;
-        auto t = new Rotate(rad, centerX, centerY);
+        auto t = Rotate(rad, centerX, centerY);
         t.draw(this.defaultCairoCtx);
-        this.elements ~= t;
+        this.elements ~= Element(t);
     }
 }

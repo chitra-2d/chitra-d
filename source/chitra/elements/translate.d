@@ -5,7 +5,7 @@ import std.format;
 import chitra.cairo;
 import chitra.elements.core;
 
-class Translate : Element
+struct Translate
 {
     double x, y;
 
@@ -36,8 +36,8 @@ mixin template translateFunctions()
     {
         // TODO: Handle when scaled state is implemented
         // @current_saved_context.add_transformation(s) if @current_saved_context.enabled?
-        auto s = new Translate(x, y);
+        auto s = Translate(x, y);
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 }

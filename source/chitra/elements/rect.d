@@ -7,7 +7,7 @@ import chitra.cairo;
 import chitra.properties;
 import chitra.elements.core;
 
-class Rect : Element
+struct Rect
 {
     double x, y;
     double w, h;
@@ -88,10 +88,10 @@ mixin template rectFunctions()
     void rect(double x, double y, double w, double h = 0.0, double r = 0, double rtl = 0.0, double rtr = 0.0, double rbr = 0, double rbl = 0)
     {
         h = h == 0.0 ? w : h;
-        auto rct = new Rect(x, y, w, h, r, rtl, rtr, rbr, rbl);
+        auto rct = Rect(x, y, w, h, r, rtl, rtr, rbr, rbl);
         rct.shapeProps = this.shapeProps;
         rct.draw(this.defaultCairoCtx);
-        this.elements ~= rct;
+        this.elements ~= Element(rct);
     }
 
     /**

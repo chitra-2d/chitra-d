@@ -3,7 +3,7 @@ module chitra.elements.new_page;
 import chitra.cairo;
 import chitra.elements.core;
 
-class NewPage : Element
+struct NewPage
 {
     void draw(cairo_t* cairoCtx)
     {
@@ -22,8 +22,8 @@ mixin template newPageFunctions()
      */
     void newPage()
     {
-        auto s = new NewPage;
+        NewPage s;
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 }

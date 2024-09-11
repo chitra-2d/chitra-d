@@ -6,7 +6,7 @@ import chitra.cairo;
 import chitra.properties;
 import chitra.elements.core;
 
-class Line : Element
+struct Line
 {
     double x1, y1;
     double x2, y2;
@@ -39,9 +39,9 @@ mixin template lineFunctions()
      */
     void line(double x1, double y1, double x2, double y2)
     {
-        auto s = new Line(x1, y1, x2, y2);
+        auto s = Line(x1, y1, x2, y2);
         s.shapeProps = this.shapeProps;
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 }

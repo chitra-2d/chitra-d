@@ -7,7 +7,7 @@ import chitra.cairo;
 import chitra.properties;
 import chitra.elements.core;
 
-class Oval : Element
+struct Oval
 {
     double x, y, w, h;
     ShapeProperties shapeProps;
@@ -49,10 +49,10 @@ mixin template ovalFunctions()
     void oval(double x, double y, double w, double h = 0.0)
     {
         h = h == 0.0 ? w : h;
-        auto s = new Oval(x, y, w, h);
+        auto s = Oval(x, y, w, h);
         s.shapeProps = this.shapeProps;
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 
     /**

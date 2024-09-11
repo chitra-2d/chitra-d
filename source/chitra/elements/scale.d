@@ -5,7 +5,7 @@ import std.format;
 import chitra.cairo;
 import chitra.elements.core;
 
-class Scale : Element
+struct Scale
 {
     double scaleX, scaleY;
 
@@ -44,8 +44,8 @@ mixin template scaleFunctions()
     {
         // TODO: Handle when scaled state is implemented
         // @current_saved_context.add_transformation(s) if @current_saved_context.enabled?
-        auto s = new Scale(scaleX, scaleY);
+        auto s = Scale(scaleX, scaleY);
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 }

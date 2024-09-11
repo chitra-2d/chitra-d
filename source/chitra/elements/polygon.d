@@ -6,7 +6,7 @@ import chitra.cairo;
 import chitra.properties;
 import chitra.elements.core;
 
-class Polygon : Element
+struct Polygon
 {
     double[2][] points;
     bool close;
@@ -53,10 +53,10 @@ mixin template polygonFunctions()
      */
     void polygon(double[2][] points, bool close = true)
     {
-        auto s = new Polygon(points, close);
+        auto s = Polygon(points, close);
         s.shapeProps = this.shapeProps;
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 
     /**

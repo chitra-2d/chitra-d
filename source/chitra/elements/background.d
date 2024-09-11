@@ -6,7 +6,7 @@ import chitra.cairo;
 import chitra.properties;
 import chitra.elements.core;
 
-class Background : Element
+struct Background
 {
     double w, h;
     ShapeProperties shapeProps;
@@ -37,7 +37,7 @@ mixin template backgroundFunctions()
      */
     void background(double r, double g, double b, double a = 1.0)
     {
-        auto s = new Background(this.width, this.height);
+        auto s = Background(this.width, this.height);
         s.shapeProps = this.shapeProps;
 
         // Override the new values for the background
@@ -45,7 +45,7 @@ mixin template backgroundFunctions()
         s.shapeProps.strokeWidth = 0;
 
         s.draw(this.defaultCairoCtx);
-        this.elements ~= s;
+        this.elements ~= Element(s);
     }
 
     /**

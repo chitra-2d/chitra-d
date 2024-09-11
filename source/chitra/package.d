@@ -8,15 +8,7 @@ public import chitra.helpers;
 import chitra.cairo;
 import chitra.context;
 import chitra.properties;
-import chitra.elements.rect;
-import chitra.elements.oval;
-import chitra.elements.polygon;
-import chitra.elements.background;
-import chitra.elements.scale;
-import chitra.elements.rotate;
-import chitra.elements.translate;
-import chitra.elements.new_page;
-import chitra.elements.line;
+import chitra.elements;
 
 class Chitra : Context
 {
@@ -69,13 +61,6 @@ class Chitra : Context
     }
 
     mixin propertiesFunctions;
-    mixin rectFunctions;
-    mixin ovalFunctions;
-    mixin polygonFunctions;
-    mixin backgroundFunctions;
-    mixin scaleFunctions;
-    mixin rotateFunctions;
-    mixin translateFunctions;
-    mixin newPageFunctions;
-    mixin lineFunctions;
+    static foreach(element; ELEMENTS)
+        mixin("mixin " ~ element.typeName(false) ~ "Functions;");
 }

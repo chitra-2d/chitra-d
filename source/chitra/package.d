@@ -3,6 +3,8 @@ module chitra;
 import std.stdio;
 import std.conv;
 
+import colors;
+
 public import chitra.helpers;
 
 import chitra.cairo;

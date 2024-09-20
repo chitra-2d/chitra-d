@@ -32,10 +32,10 @@ mixin template backgroundFunctions()
        ---
        // Draw blue background
        //             r  g  b
-       ctx.background(0, 0, 1);
+       ctx.background(0, 0, 255);
        ---
      */
-    void background(double r, double g, double b, double a = 1.0)
+    void background(int r, int g, int b, int a = 255)
     {
         auto s = Background(this.width, this.height);
         s.shapeProps = this.shapeProps;
@@ -53,10 +53,10 @@ mixin template backgroundFunctions()
 
        ---
        // Draw gray background
-       ctx.background(0.5);
+       ctx.background(124);
        ---
      */
-    void background(double gray, double a = 1.0)
+    void background(int gray, int a = 255)
     {
         background(gray, gray, gray, a);
     }
@@ -71,7 +71,7 @@ mixin template backgroundFunctions()
     */
     void background(string hexValue)
     {
-        auto color = Color.fromHexString(hexValue);
+        auto color = Color.fromHexString(hexValue).get;
         background(color.r, color.g, color.b, color.a);
     }
 }

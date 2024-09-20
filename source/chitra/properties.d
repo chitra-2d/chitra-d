@@ -4,6 +4,8 @@ import std.format;
 import std.string;
 import std.conv;
 
+import colors;
+
 struct TextProperties
 {
     string font = "Serif";
@@ -16,63 +18,13 @@ struct TextProperties
     bool hyphenation = false;
 }
 
-struct Color
-{
-    double r;
-    double g;
-    double b;
-    double a = 1.0;
-
-    string debugInfo()
-    {
-        return format("RGBA(%.2f, %.2f, %.2f, %.2f)", r, g, b, a);
-    }
-
-    this(double r, double g, double b, double a = 1.0)
-    {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.a = a;
-    }
-
-    this(double gray, double a = 1.0)
-    {
-        this.r = gray;
-        this.g = gray;
-        this.b = gray;
-        this.a = a;
-    }
-
-    static Color fromHexString(string value)
-    {
-        auto h = value.strip("#");
-        Color color;
-        color.r = h[0 .. 2].to!int(16) / 255.0;
-        color.g = h[2 .. 4].to!int(16) / 255.0;
-        color.b = h[4 .. 6].to!int(16) / 255.0;
-
-        color.a = h.length == 8 ? h[6 .. 8].to!int(16) / 255.0 : 1.0;
-
-        return color;
-    }
-
-    //   def self.rgba2hex(r, g, b, a = 1.0)
-    //     r_hex = (r*255).to_i.to_s(16).rjust(2, '0')
-    //     g_hex = (g*255).to_i.to_s(16).rjust(2, '0')
-    //     b_hex = (b*255).to_i.to_s(16).rjust(2, '0')
-    //     a_hex = (a*255).to_i.to_s(16).rjust(2, '0')
-    //     "##{r_hex}#{g_hex}#{b_hex}#{a_hex}"
-    //   end
-    // end
-}
-
 struct ShapeProperties
 {
     Color fill;
     Color stroke;
     int strokeWidth = 1;
     bool noFill = false;
+    bool noStroke = false;
     // line_dash = LineDash.new,
     //     line_cap = LibCairo::LineCapT::Butt,
     //   line_join = LibCairo::LineJoinT::Miter
@@ -80,46 +32,50 @@ struct ShapeProperties
 
 mixin template propertiesFunctions()
 {
-    void fill(double r, double g, double b, double a = 1.0)
+    void fill(int r, int g, int b, int a = 255)
     {
         shapeProps.noFill = false;
         shapeProps.fill = Color(r, g, b, a);
     }
 
-    void fill(double gray, double a = 1.0)
+    void fill(int gray, int a = 255)
     {
         shapeProps.noFill = false;
-        shapeProps.fill = Color(gray, a);
+        shapeProps.fill = Color(gray, gray, gray, a);
     }
 
     void fill(string hexValue)
     {
         shapeProps.noFill = false;
-        shapeProps.fill = Color.fromHexString(hexValue);
+        shapeProps.fill = Color.fromHexString(hexValue).get;
     }
 
-    void stroke(double r, double g, double b, double a = 1.0)
+    void stroke(int r, int g, int b, int a = 255)
     {
+        shapeProps.noStroke = false;
         shapeProps.stroke = Color(r, g, b, a);
     }
 
-    void stroke(double gray, double a = 1.0)
+    void stroke(int gray, int a = 255)
     {
-        shapeProps.stroke = Color(gray, a);
+        shapeProps.noStroke = false;
+        shapeProps.stroke = Color(gray, gray, gray, a);
     }
 
     void stroke(string hexValue)
     {
-        shapeProps.stroke = Color.fromHexString(hexValue);
+        shapeProps.noStroke = false;
+        shapeProps.stroke = Color.fromHexString(hexValue).get;
     }
 
     void noStroke()
     {
-        shapeProps.strokeWidth = 0;
+        shapeProps.noStroke = true;
     }
 
     void strokeWidth(int value)
     {
+        shapeProps.noStroke = false;
         shapeProps.strokeWidth = value;
     }
 
